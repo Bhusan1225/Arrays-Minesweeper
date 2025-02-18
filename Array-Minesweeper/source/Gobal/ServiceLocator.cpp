@@ -1,5 +1,5 @@
 #include "../../header/Global/ServiceLocator.h"
-
+#include "../../header/Main/GameService.h"
 
 namespace Global
 {
@@ -9,6 +9,7 @@ namespace Global
 	using namespace UI;
 	using namespace Gameplay;
 	using namespace Board;
+	using namespace Main;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -16,7 +17,9 @@ namespace Global
 		event_service = nullptr;
 		sound_service = nullptr;
 		ui_service = nullptr;
+		gameplay_service = nullptr;
 		board_service = nullptr;
+
 		createServices();
 	}
 
@@ -28,6 +31,8 @@ namespace Global
 		graphic_service = new GraphicService();
 		sound_service = new SoundService();
 		ui_service = new UIService();
+		gameplay_service = new GameplayService();
+		//gameplay_service->initialize();
 		board_service = new BoardService();
 	}
 
@@ -37,22 +42,38 @@ namespace Global
 		sound_service->initialize();
 		event_service->initialize();
 		ui_service->initialize();
+		
+		gameplay_service->initialize();
 		board_service->initialize();
+		
 	}
 
 	void ServiceLocator::update()
 	{
+		
 		event_service->update();
-		ui_service->update();
 		graphic_service->update();
-		board_service->update();
+
+		if (GameService::getGameState() == GameState::GAMEPLAY)
+		{
+			gameplay_service->update();
+			board_service->update();
+		}
+
+		ui_service->update();
 	}
 
 	void ServiceLocator::render()
 	{
-		ui_service->render();
 		graphic_service->render();
-		board_service->render();
+
+		if (GameService::getGameState() == GameState::GAMEPLAY)
+		{
+			gameplay_service->render();
+			board_service->render();
+		}
+
+		ui_service->render();
 	}
 
 	void ServiceLocator::clearAllServices()
@@ -62,6 +83,7 @@ namespace Global
 		delete(sound_service);
 		delete(event_service);
 		delete(board_service);
+		delete(gameplay_service);
 	}
 
 	ServiceLocator* ServiceLocator::getInstance()
@@ -78,7 +100,9 @@ namespace Global
 
 	UIService* ServiceLocator::getUIService() { return ui_service; }
 
-	BoardService* ServiceLocator::getBoardService() { return board_service; } //added the board service in the service locator
+	Gameplay::Board::BoardService* ServiceLocator::getBoardService() { return board_service; } //added the board service in the service locator
+
+	Gameplay::GameplayService* ServiceLocator::getGameplayService() { return gameplay_service; }
 
 	void ServiceLocator::deleteServiceLocator() { delete(this); }
 }

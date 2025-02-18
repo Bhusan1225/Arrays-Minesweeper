@@ -1,5 +1,6 @@
-#include "../../../header/Gameplay/Board/BoardController.h"
-#include "../../../header/Gameplay/Board/BoardView.h"
+#include "../../header/Gameplay/Board/BoardController.h"
+#include "../../header/Gameplay/Board/BoardView.h"
+
 
 namespace Gameplay
 {
@@ -34,7 +35,7 @@ namespace Gameplay
 
 		void BoardController::render()
 		{
-			board_view->render();
+			board_view->render(); /////errorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 		}
 
 		void BoardController::reset()
