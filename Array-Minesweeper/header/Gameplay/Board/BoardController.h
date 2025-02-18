@@ -7,11 +7,7 @@ namespace Gameplay
 	{
 		class BoardController
 		{
-		private:
-			static const int number_of_rows = 9;
-			static const int number_of_colums = 9;
-			static const int mines_count = 8;
-
+	
         public:
             static const int number_of_rows = 9;
             static const int number_of_colums = 9;
