@@ -16,6 +16,9 @@ namespace Gameplay
 
             const float background_alpha = 85.f;
 
+            const float board_width_offset = 115.f;
+            const float board_height_offset = 329.f;
+
             BoardController* board_controller;
             UI::UIElement::ImageView* board_image;
             UI::UIElement::ImageView* background_image;
@@ -30,6 +33,8 @@ namespace Gameplay
             void initialize();
             void update();
             void render();
+            float GetCellWidth();
+            float GetCellHeight();
         };
     }
 }
