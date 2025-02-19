@@ -29,6 +29,11 @@ namespace Gameplay
 			return cell_model->getCellState();
 		}
 
+		void CellController::render()
+		{
+			return cell_view->render();
+		}
+
 		CellValue CellController::getCellValue()
 		{
 			return cell_model->getCellValue();

@@ -26,6 +26,8 @@ namespace Gameplay
             void initialize(float width, float height);
             void update();
             void render();
+
+            void setCellTexture();
         };
     }
 }

@@ -40,6 +40,7 @@ namespace Gameplay
 		void BoardController::render()
 		{
 			board_view->render(); 
+			cell->render();
 		}
 
 		void BoardController::reset()
