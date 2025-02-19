@@ -29,7 +29,7 @@ namespace Gameplay
 			float cell_width = board_view->GetCellWidth();
 			float cell_height = board_view->GetCellHeight();
 			board_view->initialize();
-			cell->initialize();
+			cell->initialize(cell_width, cell_height);
 		}
 
 		void BoardController::update()
