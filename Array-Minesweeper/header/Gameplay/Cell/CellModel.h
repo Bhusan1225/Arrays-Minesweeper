@@ -5,39 +5,46 @@ namespace Gameplay
 {
     namespace Cell
     {
-        class CellView;
-        class CellModel;
-        enum class CellState;
-        enum class CellValue;
+        enum class CellState
+        {
+            HIDDEN,
+            OPEN,
+            FLAGGED,
+        };
 
-        class CellController
+        enum class CellValue
+        {
+            EMPTY,
+            ONE,
+            TWO,
+            THREE,
+            FOUR,
+            FIVE,
+            SIX,
+            SEVEN,
+            EIGHT,
+            MINE,
+        };
+
+        class CellModel
         {
         private:
-            CellView* cell_view;
-            CellModel* cell_model;
+            CellState cell_state;
+            CellValue cell_value;
+            sf::Vector2i position;
 
-            void destroy();
 
         public:
-            CellController(sf::Vector2i grid_position);
-            ~CellController();
+            CellModel();
+            ~CellModel();
 
-            void initialize(float cell_width, float cell_height);
-            void update();
-            void render();
-
-            void flagCell();
-            void openCell();
-
-            bool canOpenCell();
             CellState getCellState();
             void setCellState(CellState state);
 
             CellValue getCellValue();
             void setCellValue(CellValue value);
-
             sf::Vector2i getCellPosition();
-
+            void setCellPosition(sf::Vector2i grid_position);
             void reset();
         };
     }

@@ -21,9 +21,9 @@ namespace Gameplay
 
 		void BoardController::createBoard()
 		{
-			cell = new CellController();
+			cell = new CellController(); //the problem is here,  no position set, no papameteer passed ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		}
-
+		
 		void BoardController::initialize()
 		{
 			float cell_width = board_view->GetCellWidth();

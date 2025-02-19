@@ -31,9 +31,10 @@ namespace Global
 		graphic_service = new GraphicService();
 		sound_service = new SoundService();
 		ui_service = new UIService();
+		
 		gameplay_service = new GameplayService();
-		//gameplay_service->initialize();
 		board_service = new BoardService();
+		
 	}
 
 	void ServiceLocator::initialize()
@@ -46,6 +47,7 @@ namespace Global
 		gameplay_service->initialize();
 		board_service->initialize();
 		
+		
 	}
 
 	void ServiceLocator::update()
@@ -56,6 +58,7 @@ namespace Global
 
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
+			
 			gameplay_service->update();
 			board_service->update();
 		}
@@ -69,6 +72,7 @@ namespace Global
 
 		if (GameService::getGameState() == GameState::GAMEPLAY)
 		{
+			
 			gameplay_service->render();
 			board_service->render();
 		}
