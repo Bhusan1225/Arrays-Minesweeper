@@ -18,9 +18,9 @@ namespace Gameplay
 		}
 		//... some other code
 		
-		void CellController::initialize(float cell_width, float cell_height)
+		void CellController::initialize()
 		{
-			cell_view->initialize(cell_width, cell_height);
+			cell_view->initialize();
 		}
 
 

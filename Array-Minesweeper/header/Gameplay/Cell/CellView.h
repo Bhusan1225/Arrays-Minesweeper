@@ -17,17 +17,21 @@ namespace Gameplay
             UI::UIElement::ButtonView* cell_button;
             CellController* cell_controller;
 
+            const float cell_top_offset = 274.f;
+            const float cell_left_offset = 583.f;
+
             void initializeButtonImage(float width, float height);
 
         public:
             CellView(CellController* controller);
             ~CellView();
 
-            void initialize(float width, float height);
+            void initialize();
             void update();
             void render();
 
             void setCellTexture();
+            sf::Vector2f getCellScreenPosition();
         };
     }
 }
