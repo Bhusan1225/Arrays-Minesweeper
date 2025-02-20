@@ -28,10 +28,8 @@ namespace Gameplay
             void update();
             void render();
 
-            void flagCell();
-            void openCell();
-
-            bool canOpenCell();
+            
+          
             
             CellState getCellState();
             CellValue getCellValue();

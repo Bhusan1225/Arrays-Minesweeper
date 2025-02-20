@@ -1,6 +1,5 @@
 #include "../../header/Gameplay/Board/BoardController.h"
 #include "../../header/Gameplay/Board/BoardView.h"
-#include "../../header/Gameplay/Cell/CellController.h"
 #include "../../header/Gameplay/GameplayController.h"
 
 
@@ -8,11 +7,11 @@
 namespace Gameplay
 {
 
-
+	using namespace Cell;
 
 	namespace Board
 	{
-		using namespace Gameplay::Cell;
+		//using namespace Gameplay::Cell;
 
 		BoardController::BoardController()
 		{
@@ -36,19 +35,19 @@ namespace Gameplay
 		void BoardController::initialize()
 		{
 			board_view->initialize();
-			//initializeCells();
+			initializeCells();
 		}
 
-		//void BoardController::initializeCells()
-		//{
-		//	//float cell_width = board_view->getCellWidth();
-		//	//float cell_height = board_view->getCellHeight();
+		void BoardController::initializeCells()
+		{
+		    float cell_width = board_view->getCellWidth();
+			float cell_height = board_view->getCellHeight();
 
-		//	for (int i = 0; i < number_of_colums; i++)
-		//	{
-		//		cells[i]->initialize(cell_width, cell_height);
-		//	}
-		//}
+		for (int i = 0; i < number_of_colums; i++)
+			{
+				cells[i]->initialize(cell_width, cell_height);
+			}
+		}
 
 		void BoardController::update()
 		{

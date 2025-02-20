@@ -16,6 +16,8 @@ namespace Gameplay
 			return cell_state;
 		}
 
+		
+
 		void CellModel::setCellState(CellState state)
 		{
 			cell_state = state;

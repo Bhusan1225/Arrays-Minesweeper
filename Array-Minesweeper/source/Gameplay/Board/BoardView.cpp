@@ -56,12 +56,12 @@ namespace Gameplay
             board_image->render();
         }
 
-        float BoardView::GetCellWidth()
+        float BoardView::getCellWidth()
         {
             return (board_width - board_width_offset) / static_cast<float>(BoardController::number_of_colums);
         }
 
-        float BoardView::GetCellHeight()
+        float BoardView::getCellHeight()
         {
             return (board_height - board_height_offset) / static_cast<float>(BoardController::number_of_rows);
         }

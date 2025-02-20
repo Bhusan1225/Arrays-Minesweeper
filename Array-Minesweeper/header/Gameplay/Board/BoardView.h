@@ -33,8 +33,8 @@ namespace Gameplay
             void initialize();
             void update();
             void render();
-            float GetCellWidth();
-            float GetCellHeight();
+            float getCellWidth();
+            float getCellHeight();
         };
     }
 }

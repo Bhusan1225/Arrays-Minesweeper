@@ -16,7 +16,12 @@ namespace Gameplay
 			cell_model = new CellModel(cell_index);
 			cell_view = new CellView(this);
 		}
+		CellController::~CellController()
+		{
+		}
 		//... some other code
+
+		
 		
 		void CellController::initialize(float cell_width, float cell_height)
 		{
@@ -27,6 +32,11 @@ namespace Gameplay
 		CellState CellController::getCellState()
 		{
 			return cell_model->getCellState();
+		}
+
+		void CellController::update()
+		{
+
 		}
 
 		void CellController::render()
