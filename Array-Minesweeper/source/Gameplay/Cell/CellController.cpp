@@ -11,9 +11,9 @@ namespace Gameplay
 		using namespace Global;
 		using namespace Sound;
 
-		CellController::CellController()
+		CellController::CellController(int cell_index)
 		{
-			cell_model = new CellModel();
+			cell_model = new CellModel(cell_index);
 			cell_view = new CellView(this);
 		}
 		//... some other code
@@ -42,6 +42,11 @@ namespace Gameplay
 		sf::Vector2i CellController::getCellPosition()
 		{
 			return cell_model->getCellPosition();
+		}
+
+		int CellController::getCellIndex()
+		{
+			return cell_model->cell_index;
 		}
 
 		void CellController::reset()

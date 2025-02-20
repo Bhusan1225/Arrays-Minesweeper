@@ -4,10 +4,9 @@ namespace Gameplay
 {
 	namespace Cell
 	{
-		CellModel::CellModel()
+		CellModel::CellModel(int cell_index)
 		{
-			reset();
-			//position = grid_position;
+			cell_index = cell_index;
 		}
 
 		CellModel::~CellModel() = default;
@@ -46,6 +45,11 @@ namespace Gameplay
 		{
 			cell_state = CellState::HIDDEN;
 			cell_value = CellValue::EMPTY;
+		}
+
+		int CellModel::getCellIndex()
+		{
+			return cell_index;
 		}
 	}
 }

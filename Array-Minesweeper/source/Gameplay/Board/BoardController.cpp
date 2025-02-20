@@ -1,12 +1,18 @@
 #include "../../header/Gameplay/Board/BoardController.h"
 #include "../../header/Gameplay/Board/BoardView.h"
 #include "../../header/Gameplay/Cell/CellController.h"
+#include "../../header/Gameplay/GameplayController.h"
+
+
 
 namespace Gameplay
 {
+
+
+
 	namespace Board
 	{
-		using namespace Cell;
+		using namespace Gameplay::Cell;
 
 		BoardController::BoardController()
 		{
@@ -21,43 +27,67 @@ namespace Gameplay
 
 		void BoardController::createBoard()
 		{
-			cell = new CellController(); //the problem is here,  no position set, no papameteer passed ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			for (int i = 0; i < number_of_colums; i++)
+			{
+				cells[i] = new CellController(i); //Passing Cell Index in Cell Controller's constructor
+			}
 		}
-		
+
 		void BoardController::initialize()
 		{
-			float cell_width = board_view->GetCellWidth();
-			float cell_height = board_view->GetCellHeight();
 			board_view->initialize();
-			cell->initialize(cell_width, cell_height);
+			//initializeCells();
 		}
+
+		//void BoardController::initializeCells()
+		//{
+		//	//float cell_width = board_view->getCellWidth();
+		//	//float cell_height = board_view->getCellHeight();
+
+		//	for (int i = 0; i < number_of_colums; i++)
+		//	{
+		//		cells[i]->initialize(cell_width, cell_height);
+		//	}
+		//}
 
 		void BoardController::update()
 		{
 			board_view->update();
+			for (int i = 0; i < number_of_colums; i++)
+			{
+				cells[i]->update();
+			}
 		}
 
 		void BoardController::render()
 		{
-			board_view->render(); 
-			cell->render();
+			board_view->render();
+			for (int i = 0; i < number_of_colums; i++)
+			{
+				cells[i]->render();
+			}
 		}
 
 		void BoardController::reset()
 		{
-			//Yet to implement
+			for (int i = 0; i < number_of_colums; i++)
+			{
+				cells[i]->reset();
+			}
 		}
 
 		void BoardController::deleteBoard()
 		{
-			//Yet to implement
+			for (int i = 0; i < number_of_colums; i++)
+			{
+				delete(cells[i]);
+			}
 		}
 
 		void BoardController::destroy()
 		{
+			deleteBoard();
 			delete(board_view);
 		}
 	}
-
-	
 }

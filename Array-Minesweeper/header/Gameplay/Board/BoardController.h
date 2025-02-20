@@ -1,12 +1,20 @@
 #pragma once
 #include <sfml/Graphics.hpp>
 
-#include "../../header/Gameplay/Cell/CellController.h"
+#include "../../header/UI/UIElement/ButtonView.h"
+
+
+class CellController;
+
+
 
 namespace Gameplay
 {
+   
+
     namespace Board
     {
+        using namespace Gameplay::Cell;
         class BoardView;
 
         class BoardController
@@ -15,6 +23,10 @@ namespace Gameplay
             static const int number_of_rows = 9;
             static const int number_of_colums = 9;
             static const int mines_count = 8;
+
+
+            static const int  number_of_columns = 9;
+            CellController* cells[number_of_columns];
 
             BoardController();
             ~BoardController();
@@ -26,11 +38,14 @@ namespace Gameplay
 
         private:
             BoardView* board_view;
-            Cell::CellController* cell;
+            //Cell::CellController* cell;
 
             void createBoard();
             void deleteBoard();
             void destroy();
+
+
+            void initializeCells();
         };
     }
 }

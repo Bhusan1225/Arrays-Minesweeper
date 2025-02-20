@@ -17,6 +17,7 @@ namespace Gameplay
 
 	void GameplayService::initialize()
 	{
+		gameplay_controller = new GameplayController();
 		gameplay_controller->initialize();
 	}
 
