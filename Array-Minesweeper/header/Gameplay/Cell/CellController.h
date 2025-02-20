@@ -20,7 +20,7 @@ namespace Gameplay
             void destroy();
 
         public:
-            CellController(int cell_index);
+            CellController(sf::Vector2i position);
 
             ~CellController();
 
@@ -41,7 +41,7 @@ namespace Gameplay
 
             sf::Vector2i getCellPosition();
             int getMinesAround();
-            int getCellIndex();
+            //int getCellPosition();
             void reset();
         };
     }

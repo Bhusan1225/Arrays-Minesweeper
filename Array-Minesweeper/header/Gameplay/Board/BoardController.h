@@ -26,8 +26,8 @@ namespace Gameplay
             static const int mines_count = 8;
 
 
-            static const int  number_of_columns = 9;
-            Cell::CellController* cells[number_of_columns];
+            //static const int  number_of_columns = 9;
+            Cell::CellController* board[number_of_rows][number_of_colums];
 
             BoardController();
             ~BoardController();
@@ -44,9 +44,11 @@ namespace Gameplay
             void createBoard();
             void deleteBoard();
             void destroy();
-
-
             void initializeCells();
+            
+            void resetBoard();
+
+            
         };
     }
 }

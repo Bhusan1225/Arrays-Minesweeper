@@ -35,14 +35,14 @@ namespace Gameplay
           
 
         public:
-            int cell_index;
-            CellModel(int cell_index);
+            
+            CellModel(sf::Vector2i position);
             ~CellModel();
 
             CellState getCellState();
             void setCellState(CellState state);
 
-            int getCellIndex();
+            sf::Vector2i getCellposition();
             CellValue getCellValue();
             void setCellValue(CellValue value);
             sf::Vector2i getCellPosition();
