@@ -79,5 +79,27 @@ namespace Gameplay
 
             return sf::Vector2f(x_screen_position, y_screen_position);
         }
+
+        void CellView::registerButtonCallback()
+        {
+            cell_button->registerCallbackFuntion(std::bind(&CellView::cellButtonCallback, this, std::placeholders::_1));
+        }
+
+        void CellView::cellButtonCallback(UI::UIElement::ButtonType button_type)
+        {
+            switch (button_type)
+            {
+            case UI::UIElement::ButtonType::LEFT_MOUSE_BUTTON:
+                cell_controller->openCell();
+                break;
+            case UI::UIElement::ButtonType::RIGHT_MOUSE_BUTTON:
+                //Yet to be implemented
+                break;
+            }
+        }
+
+     
+
+
     }
 }

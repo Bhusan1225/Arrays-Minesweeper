@@ -1,6 +1,6 @@
 #pragma once
 #include <sfml/Graphics.hpp>
-
+#include "../../header/UI/UIElement/ButtonView.h"
 namespace Gameplay
 {
     namespace Cell
@@ -28,12 +28,12 @@ namespace Gameplay
             void update();
             void render();
 
-            
-          
-            
+
+
+
             CellState getCellState();
             CellValue getCellValue();
-           
+
             void setCellState(CellState state);
 
             CellType getCellType();
@@ -41,8 +41,12 @@ namespace Gameplay
 
             sf::Vector2i getCellPosition();
             int getMinesAround();
-            //int getCellPosition();
+            void openCell();
             void reset();
+
+            void flagCell();
+            void cellButtonCallback(UI::UIElement::ButtonType button_type);
+        
         };
     }
 }
