@@ -12,8 +12,11 @@ namespace Gameplay
 
     class GameplayController
     {
-   
-       
+    private:
+        const float max_level_duration = 301.0f;
+        const float game_over_time = 11.f;
+
+        float remaining_time;
     public:
         GameplayController();
         ~GameplayController();
@@ -23,8 +26,10 @@ namespace Gameplay
         void render();
 
         void restart();
-        
-        
+
+        void updateRemainingTime();
+        float getRemainingTime();
+      
     };
 }
 
