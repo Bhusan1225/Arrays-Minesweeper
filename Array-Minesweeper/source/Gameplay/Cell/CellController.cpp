@@ -19,7 +19,7 @@ namespace Gameplay
 		CellController::~CellController()
 		{
 		}
-		//... some other code
+		
 
 		
 		
