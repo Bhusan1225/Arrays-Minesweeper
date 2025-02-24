@@ -45,10 +45,10 @@ namespace Gameplay
             void deleteBoard();
             void destroy();
             void initializeCells();
-            
+           
             void resetBoard();
 
-            
+            int getMinesCount();
         };
     }
 }

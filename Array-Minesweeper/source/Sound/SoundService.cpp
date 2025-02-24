@@ -36,7 +36,7 @@ namespace Sound
 
 		case SoundType::FLAG:
 			sound_effect.setBuffer(flag_sound);
-			break;
+			break;  
 		default:
 			printf("Invalid sound type");
 			return;

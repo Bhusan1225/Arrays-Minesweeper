@@ -21,6 +21,7 @@ namespace Gameplay
 
 		void startGame();
 
+		float getRemainingTime();
 		
 	};
 }

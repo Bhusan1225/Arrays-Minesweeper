@@ -113,5 +113,10 @@ namespace Gameplay
 			deleteBoard();
 			delete (board_view);
 		}
+
+		int BoardController::getMinesCount()
+		{
+			return mines_count; //-flagged_cells;
+		}
 	}
 }
