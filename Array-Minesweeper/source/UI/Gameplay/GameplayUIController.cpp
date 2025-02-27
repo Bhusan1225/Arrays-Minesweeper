@@ -33,7 +33,7 @@ namespace UI
 
         void GameplayUIController::initializeTimeText()
         {
-            time_text->initialize("000", sf::Vector2f(time_text_left_offset, time_text_top_offset), FontType::ROBOTO, font_size, text_color);
+            time_text->initialize("000", sf::Vector2f(time_text_left_offset, time_text_top_offset), FontType::DS_DIGIB, font_size, text_color);
         }
 
         void GameplayUIController::show()
@@ -68,9 +68,12 @@ namespace UI
 
         void GameplayUIController::initializeMineText()
         {
-            mine_text->initialize("000", sf::Vector2f(mine_text_left_offset, mine_text_top_offset), FontType::ROBOTO, font_size, text_color);
+            mine_text->initialize("000", sf::Vector2f(mine_text_left_offset, mine_text_top_offset), FontType::DS_DIGIB, font_size, text_color);
         }
-
+        GameplayUIController::~GameplayUIController() 
+        {
+            // Cleanup if needed
+        }
         void GameplayUIController::updateMineText()
         {
             int mines_count = ServiceLocator::getInstance()->getGameplayService()->getMinesCount();

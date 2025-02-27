@@ -227,6 +227,5 @@
   <ItemGroup>
     <Font Include="assets\fonts\bubbleBobble.ttf" />
     <Font Include="assets\fonts\DS_DIGIB.TTF" />
-    <Font Include="assets\fonts\roboto.ttf" />
   </ItemGroup>
 </Project>

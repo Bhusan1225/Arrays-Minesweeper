@@ -29,7 +29,7 @@ namespace Gameplay
 
         void updateRemainingTime();
         float getRemainingTime();
-      
+        int getMinesCount();
     };
 }
 

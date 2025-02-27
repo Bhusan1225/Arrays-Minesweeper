@@ -37,7 +37,7 @@ namespace Gameplay
             void render();
             void reset();
 
-        private:
+        public:
             BoardView* board_view;
             //Cell::CellController* cell;
 

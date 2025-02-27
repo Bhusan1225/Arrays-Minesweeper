@@ -39,17 +39,16 @@ namespace UI
 			UIElement::TextView* time_text;
 			UIElement::ButtonView* restart_button;
 
-			void createButton();
+			//void createButton();
 			void createTexts();
-			void initializeButton();
+		
 			void initializeTexts();
 			void initializeMineText();
 			void initializeTimeText();
 
 			void updateMineText();
 			void updateTimeText();
-			void restartButtonCallback();
-			void registerButtonCallback();
+			
 
 			void destroy();
 
