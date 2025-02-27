@@ -43,7 +43,7 @@ namespace Gameplay
             int getMinesAround();
             void openCell();
             void reset();
-
+            bool canOpenCell();
             void flagCell();
             void cellButtonCallback(UI::UIElement::ButtonType button_type);
         

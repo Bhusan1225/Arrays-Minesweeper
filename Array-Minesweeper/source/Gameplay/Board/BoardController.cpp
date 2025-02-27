@@ -1,13 +1,17 @@
 #include "../../header/Gameplay/Board/BoardController.h"
 #include "../../header/Gameplay/Board/BoardView.h"
-#include "../../header/Gameplay/GameplayController.h"
-
+#include "../../header/Gameplay/Cell/CellController.h"
+#include "../../header/Gameplay/Cell/CellModel.h"
+#include "../../header/Global/ServiceLocator.h"
+#include "../../header/Sound/SoundService.h"
 
 
 namespace Gameplay
 {
 
 	using namespace Cell;
+	using namespace Global;
+	using namespace Sound;
 
 	namespace Board
 	{
@@ -83,6 +87,7 @@ namespace Gameplay
 
 		void BoardController::reset()
 		{
+			flagged_cell = 0;
 			resetBoard();
 		}
 
@@ -116,7 +121,48 @@ namespace Gameplay
 
 		int BoardController::getMinesCount()
 		{
-			return mines_count; //-flagged_cells;
+			return mines_count -flagged_cells;
 		}
+
+		void BoardController::openCell(sf::Vector2i cell_position)
+		{
+			if (board[cell_position.x][cell_position.y]->canOpenCell())
+			{
+				board[cell_position.x][cell_position.y]->openCell();
+			}
+		}
+
+		void BoardController::processCellInput(Cell::CellController* cell_controller, UI::UIElement::ButtonType button_type)
+		{
+			switch (button_type)
+			{
+			case UI::UIElement::ButtonType::LEFT_MOUSE_BUTTON:
+				openCell(cell_controller->getCellPosition());
+				break;
+			case UI::UIElement::ButtonType::RIGHT_MOUSE_BUTTON:
+				flagCell(cell_controller->getCellPosition()); // New Flagging Method
+				break;
+			}
+		}
+
+
+		void BoardController::flagCell(sf::Vector2i cell_position)
+		{
+			switch (board[cell_position.x][cell_position.y]->getCellState())
+			{
+			case::Gameplay::Cell::CellState::FLAGGED:
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::FLAG);
+				flagged_cells--; //Used to update Gameplay UI
+				break;
+			case::Gameplay::Cell::CellState::HIDDEN:
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::FLAG);
+				flagged_cells++; //Used to update Gameplay UI
+				break;
+			}
+
+			board[cell_position.x][cell_position.y]->flagCell();
+		}
+
+		
 	}
 }

@@ -20,6 +20,7 @@ namespace Gameplay
             void render();
             int getMinesCount();
             void resetBoard();
+            void processCellInput(CellController* cell_controller, UI::UIElement::ButtonType button_type);
         };
     }
 }

@@ -114,6 +114,8 @@ namespace UI
             mine_text->setText(string_mine_count);
             mine_text->update();
         }
+
+
     }
 }
 

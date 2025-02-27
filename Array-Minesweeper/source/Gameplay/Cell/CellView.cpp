@@ -1,6 +1,7 @@
 #include "../../header/Gameplay/Cell/CellView.h"
 #include "../../header/Gameplay/Cell/CellModel.h"
 #include "../../header/Gameplay/Cell/CellController.h"
+#include "../../header/Global/ServiceLocator.h"
 #include "../../header/Global/Config.h"
 
 namespace Gameplay
@@ -85,17 +86,9 @@ namespace Gameplay
             cell_button->registerCallbackFuntion(std::bind(&CellView::cellButtonCallback, this, std::placeholders::_1));
         }
 
-        void CellView::cellButtonCallback(UI::UIElement::ButtonType button_type)
+        void CellView::cellButtonCallback(ButtonType button_type)
         {
-            switch (button_type)
-            {
-            case UI::UIElement::ButtonType::LEFT_MOUSE_BUTTON:
-                cell_controller->openCell();
-                break;
-            case UI::UIElement::ButtonType::RIGHT_MOUSE_BUTTON:
-                //Yet to be implemented
-                break;
-            }
+            ServiceLocator::getInstance()->getBoardService()->processCellInput(cell_controller, button_type);
         }
 
      
