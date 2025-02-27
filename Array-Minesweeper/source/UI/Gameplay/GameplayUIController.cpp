@@ -1,16 +1,19 @@
 #include "../../header/UI/Gameplay/GameplayUIController.h"
+#include "../../header/Global/Config.h"
 #include <sstream>
 #include <iomanip>
 namespace UI 
 {
     using namespace UIElement;
     using namespace Global;
-
+    using namespace Sound;
 
     namespace GameplayUI
     {
         GameplayUIController::GameplayUIController()
         {
+        
+            createButton();
             createTexts();
         }
 
@@ -20,16 +23,42 @@ namespace UI
             time_text = new TextView();
         }
 
+        void GameplayUIController::createButton()
+        {
+            restart_button = new ButtonView();
+        }
         void GameplayUIController::initialize()
+        {
+            initializeButton();
+            initializeTexts();
+        
+        }
+        void GameplayUIController::initializeTexts()
         {
             initializeMineText();
             initializeTimeText();
         }
-
-        void GameplayUIController::initializeTexts()
+        
+        void GameplayUIController::initializeButton()
         {
-            initializeTimeText();
+            restart_button->initialize("Restart Button",
+                Config::restart_button_texture_path,
+                button_width, button_height,
+                sf::Vector2f(restart_button_left_offset, restart_button_top_offset));
+
+            registerButtonCallback();
         }
+        void GameplayUIController::registerButtonCallback()
+        {
+            restart_button->registerCallbackFuntion(std::bind(&GameplayUIController::restartButtonCallback, this));
+        }
+        void GameplayUIController::restartButtonCallback()
+        {
+            ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+            ServiceLocator::getInstance()->getGameplayService()->startGame();
+        }
+
+        
 
         void GameplayUIController::initializeTimeText()
         {

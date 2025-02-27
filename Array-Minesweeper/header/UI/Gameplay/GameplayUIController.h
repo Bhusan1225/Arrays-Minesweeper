@@ -39,18 +39,7 @@ namespace UI
 			UIElement::TextView* time_text;
 			UIElement::ButtonView* restart_button;
 
-			//void createButton();
-			void createTexts();
-		
-			void initializeTexts();
-			void initializeMineText();
-			void initializeTimeText();
-
-			void updateMineText();
-			void updateTimeText();
 			
-
-			void destroy();
 
 		public:
 			GameplayUIController();
@@ -60,6 +49,19 @@ namespace UI
 			void update() override;
 			void render() override;
 			void show() override;
+			void createButton();
+			void createTexts();
+
+			void initializeTexts();
+			void initializeMineText();
+			void initializeTimeText();
+			void initializeButton();
+			void updateMineText();
+			void updateTimeText();
+
+			void registerButtonCallback();
+			void destroy();
+			void restartButtonCallback();
 		};
 	}
 }
