@@ -4,10 +4,7 @@
 #include  "../../header/Gameplay/Cell/CellController.h"
 #include "../../header/UI/UIElement/ButtonView.h"
 
-//#include <random>
-
-
-
+#include <random>
 
 namespace Gameplay
 {
@@ -20,16 +17,34 @@ namespace Gameplay
 
         class BoardController
         {
+
+        enum class BoardState
+         {
+                FIRST_CELL,         // The state when the player opens first cell.
+                PLAYING,           // The game is in progress.
+                COMPLETED,        // The game is over.
+         };
+
+
         public:
             static const int number_of_rows = 9;
             static const int number_of_colums = 9;
             static const int mines_count = 8;
             
-            int flagged_cell;
-               int flagged_cells;
-            //static const int  number_of_columns = 9;
-            Cell::CellController* board[number_of_rows][number_of_colums];
+          
+            BoardState board_state;
 
+            BoardState getBoardState();
+            void setBoardState(BoardState state);
+
+            int flagged_cell;
+            int flagged_cells;
+           
+            Cell::CellController* board[number_of_rows][number_of_colums];
+            
+            std::default_random_engine random_engine;
+            std::random_device random_device;
+            
             BoardController();
             ~BoardController();
 
@@ -38,7 +53,7 @@ namespace Gameplay
             void render();
             void reset();
 
-        public:
+
             BoardView* board_view;
             //Cell::CellController* cell;
 
@@ -46,13 +61,22 @@ namespace Gameplay
             void deleteBoard();
             void destroy();
             void initializeCells();
-           
+            
+
             void resetBoard();
             void openCell(sf::Vector2i cell_position);
             int getMinesCount();
-            void openCell();
+            
             bool canOpenCell();
+
+
+            void populateMines(sf::Vector2i cell_position);
+            void populateBoard(sf::Vector2i cell_position);
+            void populateCells();
+
             void processCellInput(Cell::CellController* cell_controller, UI::UIElement::ButtonType button_type);
+            int countMinesAround(sf::Vector2i cell_position);
+            bool isValidCellPosition(sf::Vector2i cell_position);
             void flagCell(sf::Vector2i cell_position);
         };
     }

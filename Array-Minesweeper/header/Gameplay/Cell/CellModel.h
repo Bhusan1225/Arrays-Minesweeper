@@ -23,7 +23,7 @@ namespace Gameplay
             SIX,
             SEVEN,
             EIGHT,
-            MINE,
+            MINE
         };
 
         class CellModel

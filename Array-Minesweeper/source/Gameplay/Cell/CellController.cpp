@@ -96,6 +96,11 @@ namespace Gameplay
 			return cell_model->getCellState() != CellState::FLAGGED && cell_model->getCellState() != CellState::OPEN;
 		}
 
+		void CellController::setCellValue(CellValue type)
+		{
+			cell_model->setCellValue(type);
+		}
+
 
 	}
 }
