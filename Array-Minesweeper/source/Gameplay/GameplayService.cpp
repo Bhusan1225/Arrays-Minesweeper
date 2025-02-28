@@ -54,4 +54,11 @@ namespace Gameplay
 
 		return gameplay_controller->getMinesCount();
 	}
+
+	// This is part of the Gameplay Service layer that interacts with the GameplayController.
+	void GameplayService::endGame(GameResult result)
+	{
+		// This function forwards the result of the game to the controller's endGame function.
+		gameplay_controller->endGame(result); // Trigger the endGame logic in the controller.
+	}
 }

@@ -76,6 +76,7 @@ namespace Gameplay
             void openAllCells();
 
             void processCellInput(Cell::CellController* cell_controller, UI::UIElement::ButtonType button_type);
+            void processMineCell(sf::Vector2i cell_position);
             int countMinesAround(sf::Vector2i cell_position);
             bool isValidCellPosition(sf::Vector2i cell_position);
             void processEmptyCell(sf::Vector2i cell_position);

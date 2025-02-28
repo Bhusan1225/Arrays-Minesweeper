@@ -7,6 +7,13 @@
 
 namespace Gameplay
 {
+
+    enum class GameResult
+    {
+        NONE,
+        WON,
+        LOST
+    };
     using namespace Gameplay::Board;
     
 
@@ -15,7 +22,7 @@ namespace Gameplay
     private:
         const float max_level_duration = 301.0f;
         const float game_over_time = 11.f;
-
+        GameResult game_result = GameResult::NONE;
         float remaining_time;
     public:
         GameplayController();
@@ -27,9 +34,14 @@ namespace Gameplay
 
         void restart();
 
+        void gameWon();
+        void gameLost();
+      
+
         void updateRemainingTime();
         float getRemainingTime();
         int getMinesCount();
+        void endGame(GameResult result);
     };
 }
 
