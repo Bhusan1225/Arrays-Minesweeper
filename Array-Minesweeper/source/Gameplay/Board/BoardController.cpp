@@ -113,6 +113,7 @@ namespace Gameplay
 					board_state = BoardState::PLAYING;
 				}
 
+				processCellValue(cell_position); //Handles different cell value
 				board[cell_position.x][cell_position.y]->openCell();
 			}
 		}
@@ -257,6 +258,59 @@ namespace Gameplay
 			for (int b = 0; b < number_of_colums; ++b)
 			{
 				board[a][b]->openCell();
+			}
+		}
+	}
+
+	void BoardController::processCellValue(sf::Vector2i cell_position)
+	{
+		switch (board[cell_position.x][cell_position.y]->getCellValue())
+		{
+		case::Gameplay::Cell::CellValue::EMPTY:
+			//processEmptyCell(cell_position); Yet to implement
+			break;
+		case::Gameplay::Cell::CellValue::MINE:
+			//processMineCell(cell_position); Yet to implement
+			break;
+		default:
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+			break;
+		}
+	}
+
+	void BoardController::openEmptyCells(sf::Vector2i cell_position)
+	{
+		// Check the state of the cell at the given position.
+		switch (board[cell_position.x][cell_position.y]->getCellState())
+		{
+			// If the cell is already OPEN, no further action is required, and we return from the function.
+		case::Gameplay::Cell::CellState::OPEN:
+			return;
+
+			// If the cell is FLAGGED, decrement the flagged_cells count as the flag will be removed.
+		case::Gameplay::Cell::CellState::FLAGGED:
+			flagged_cells--;
+			// No break statement here, so the default case will execute next
+
+		// Default case handles the scenario where the cell is neither OPEN nor FLAGGED, which implies it is HIDDEN.
+		default:
+			// Opens the cell at the current position.
+			board[cell_position.x][cell_position.y]->openCell();
+		}
+
+		// Iterate over all neighbouring cells.
+		for (int a = -1; a < 2; a++)
+		{
+			for (int b = -1; b < 2; b++)
+			{
+				// Skip the iteration if it's the current cell or if the new cell position is not valid.
+				if ((a == 0 && b == 0) || !isValidCellPosition(sf::Vector2i(a + cell_position.x, b + cell_position.y)))
+					continue;
+
+				// Calculate the position of the neighbouring cell.
+				sf::Vector2i next_cell_position = sf::Vector2i(a + cell_position.x, b + cell_position.y);
+				// Recursively open the neighbouring cell.
+				openCell(next_cell_position);
 			}
 		}
 	}
