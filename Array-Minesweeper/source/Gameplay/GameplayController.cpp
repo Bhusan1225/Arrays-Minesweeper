@@ -2,16 +2,19 @@
 #include "../../header/Gameplay/Board/BoardService.h"
 #include "../../header/Time/TimeService.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Main/GameService.h"
 
 namespace Gameplay
 {
+    using namespace Main;
     using namespace Board;
     using namespace Global;
     using namespace Time;
 
-    GameplayController::GameplayController() {}
+    GameplayController::GameplayController() { 
+    board_service = ServiceLocator::getInstance()->getBoardService(); }
 
-    GameplayController::~GameplayController() {}
+    GameplayController::~GameplayController() { board_service = nullptr; }
 
     void GameplayController::initialize() {}
 
@@ -68,9 +71,21 @@ namespace Gameplay
         }
     }
 
+    void GameplayController::showCredits() { GameService::setGameState(GameState::CREDITS); }
+
     void GameplayController::gameLost()
     {
-        // Implement game lost specific logic here.
+        if (game_result == GameResult::NONE)
+        {
+            game_result = GameResult::LOST;
+            beginGameOverTimer();
+            board_service->showBoard();
+            board_service->setBoardState(BoardState::COMPLETED);
+        }
+        else
+        {
+            showCredits();
+        }
     }
 
     // This function defines what should happen when the game is won.
@@ -79,6 +94,6 @@ namespace Gameplay
     {
         // Implement game won specific logic here.
     }
-
+    void GameplayController::beginGameOverTimer() { remaining_time = game_over_time; }
    
 }

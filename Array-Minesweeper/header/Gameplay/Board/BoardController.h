@@ -10,21 +10,20 @@ namespace Gameplay
 {
     using namespace Cell;
 
+
     namespace Board
     {
-        
+      
         class BoardView;
-
+        enum class BoardState
+        {
+            FIRST_CELL,         // The state when the player opens first cell.
+            PLAYING,           // The game is in progress.
+            COMPLETED,        // The game is over.
+        };
         class BoardController
         {
-
-        enum class BoardState
-         {
-                FIRST_CELL,         // The state when the player opens first cell.
-                PLAYING,           // The game is in progress.
-                COMPLETED,        // The game is over.
-         };
-
+           
 
         public:
             static const int number_of_rows = 9;
@@ -32,7 +31,7 @@ namespace Gameplay
             static const int mines_count = 8;
             
           
-            BoardState board_state;
+           BoardState board_state;
 
             BoardState getBoardState();
             void setBoardState(BoardState state);
@@ -74,6 +73,8 @@ namespace Gameplay
             void populateBoard(sf::Vector2i cell_position);
             void populateCells();
             void openAllCells();
+            void showBoard();
+            
 
             void processCellInput(Cell::CellController* cell_controller, UI::UIElement::ButtonType button_type);
             void processMineCell(sf::Vector2i cell_position);

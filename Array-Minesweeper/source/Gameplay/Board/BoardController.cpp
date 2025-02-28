@@ -178,7 +178,7 @@ namespace Gameplay
 			board[cell_position.x][cell_position.y]->flagCell();
 		}
 
-		BoardController::BoardState BoardController::getBoardState()
+		BoardState BoardController::getBoardState()
 		{
 			return board_state;
 		}
@@ -259,6 +259,25 @@ namespace Gameplay
 			{
 				board[a][b]->openCell();
 			}
+		}
+	}
+
+	void BoardController::showBoard()
+	{
+
+		switch (ServiceLocator::getInstance()->getBoardService()->getBoardState())
+		{
+		case Gameplay::Board::BoardState::FIRST_CELL:
+			populateBoard(sf::Vector2i(0, 0));
+			openAllCells();
+			break;
+		case Gameplay::Board::BoardState::PLAYING:
+			openAllCells();
+			break;
+		case Gameplay::Board::BoardState::COMPLETED:
+			break;
+		default:
+			break;
 		}
 	}
 

@@ -24,6 +24,7 @@ namespace Gameplay
         const float game_over_time = 11.f;
         GameResult game_result = GameResult::NONE;
         float remaining_time;
+        BoardService* board_service;
     public:
         GameplayController();
         ~GameplayController();
@@ -37,11 +38,12 @@ namespace Gameplay
         void gameWon();
         void gameLost();
       
-
+        void beginGameOverTimer();
         void updateRemainingTime();
         float getRemainingTime();
         int getMinesCount();
         void endGame(GameResult result);
+        void showCredits(); 
     };
 }
 
