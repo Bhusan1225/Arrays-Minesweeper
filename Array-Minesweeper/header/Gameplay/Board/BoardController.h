@@ -73,10 +73,12 @@ namespace Gameplay
             void populateMines(sf::Vector2i cell_position);
             void populateBoard(sf::Vector2i cell_position);
             void populateCells();
+            void openAllCells();
 
             void processCellInput(Cell::CellController* cell_controller, UI::UIElement::ButtonType button_type);
             int countMinesAround(sf::Vector2i cell_position);
             bool isValidCellPosition(sf::Vector2i cell_position);
+            void processCellValue(sf::Vector2i cell_position);
             void flagCell(sf::Vector2i cell_position);
         };
     }
