@@ -1,12 +1,12 @@
 #pragma once
-#include "../../header/Gameplay/Board/BoardController.h"
+#include "../../header/Gameplay/Board/BoardService.h"
 #include "../../header/Gameplay/Cell/CellController.h"
+#include "../../header/UI/UIElement/ButtonView.h"
 #include <SFML/Graphics.hpp>
-
-
 
 namespace Gameplay
 {
+    using namespace Gameplay::Board;
 
     enum class GameResult
     {
@@ -14,19 +14,26 @@ namespace Gameplay
         WON,
         LOST
     };
-    using namespace Gameplay::Board;
-    
 
     class GameplayController
     {
     private:
         const float max_level_duration = 301.0f;
         const float game_over_time = 11.f;
-        GameResult game_result = GameResult::NONE;
-        float remaining_time;
         BoardService* board_service;
+
+        float remaining_time;
+        GameResult game_result;
+
+        void updateRemainingTime();
+        bool isTimeOver();
+        void showCredits();;
+        void beginGameOverTimer();
+
+        void gameWon();
+        void gameLost();
+
     public:
-        GameplayController();
         ~GameplayController();
 
         void initialize();
@@ -34,17 +41,9 @@ namespace Gameplay
         void render();
 
         void restart();
-
-        void gameWon();
-        void gameLost();
-      
-        void beginGameOverTimer();
-        void updateRemainingTime();
-        float getRemainingTime();
-        int getMinesCount();
         void endGame(GameResult result);
-        void showCredits(); 
+
+        int getMinesCount();
+        float getRemainingTime();
     };
 }
-
-

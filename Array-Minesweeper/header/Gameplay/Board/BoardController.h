@@ -8,19 +8,21 @@
 
 namespace Gameplay
 {
-    using namespace Cell;
+    //using namespace Cell;
 
 
     namespace Board
     {
-      
+     
         class BoardView;
+
         enum class BoardState
         {
-            FIRST_CELL,         // The state when the player opens first cell.
-            PLAYING,           // The game is in progress.
-            COMPLETED,        // The game is over.
+            FIRST_CELL,     // The state when the player opens first cell.
+            PLAYING,        // The game is in progress.
+            COMPLETED,      // The game is over.
         };
+
         class BoardController
         {
            
