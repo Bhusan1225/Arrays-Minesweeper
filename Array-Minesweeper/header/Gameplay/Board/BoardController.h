@@ -85,6 +85,7 @@ namespace Gameplay
             void processEmptyCell(sf::Vector2i cell_position);
             void processCellValue(sf::Vector2i cell_position);
             void flagCell(sf::Vector2i cell_position);
+            void flagAllMines();
         };
     }
 }

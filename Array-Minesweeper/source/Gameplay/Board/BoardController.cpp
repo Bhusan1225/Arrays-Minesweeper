@@ -39,7 +39,17 @@ namespace Gameplay
 				}
 			}
 		}
-
+		void BoardController::flagAllMines()
+		{
+			for (int row = 0; row < number_of_rows; ++row)
+			{
+				for (int col = 0; col < number_of_colums; ++col)
+				{
+					if (board[row][col]->getCellValue() == CellValue::MINE && board[row][col]->getCellState() != CellState::FLAGGED)
+						flagCell(sf::Vector2i(row, col));
+				}
+			}
+		}
 		void BoardController::initialize()
 		{
 			board_view->initialize();
@@ -149,6 +159,8 @@ namespace Gameplay
 
 		void BoardController::processCellInput(Cell::CellController* cell_controller, UI::UIElement::ButtonType button_type)
 		{
+			if (board_state == BoardState::COMPLETED)
+				return;
 			switch (button_type)
 			{
 			case UI::UIElement::ButtonType::LEFT_MOUSE_BUTTON:

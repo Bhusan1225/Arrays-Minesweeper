@@ -68,7 +68,7 @@ namespace Gameplay
     void GameplayController::gameWon()
     {
         game_result = GameResult::WON;
-        //board_service->flagAllMines();
+        board_service->flagAllMines();
         board_service->setBoardState(BoardState::COMPLETED);
         ServiceLocator::getInstance()->getSoundService()->playSound(Sound::SoundType::GAME_WON);
     }

@@ -61,5 +61,7 @@ namespace Gameplay
 		{
 			board_controller->processCellInput(cell_controller, button_type);
 		}
+
+		void BoardService::flagAllMines() { board_controller->flagAllMines(); }
 	}
 }

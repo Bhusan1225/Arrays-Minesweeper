@@ -32,7 +32,7 @@ namespace Gameplay
 
             int getMinesCount();
 
-            //void flagAllMines();
+            void flagAllMines();
             void showBoard();
         };
     }
