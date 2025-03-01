@@ -40,5 +40,28 @@ namespace Gameplay
 		{
 			delete(board_controller);
 		}
+
+		int BoardService::getMinesCount()
+		{
+			return board_controller->getMinesCount();
+		}
+		
+		BoardState BoardService::getBoardState()
+		{
+			return board_controller->getBoardState();
+		}
+		
+		void BoardService::setBoardState(BoardState state)
+		{
+			board_controller->setBoardState(state);
+		}
+		void BoardService::showBoard() { board_controller->showBoard(); }
+
+		void BoardService::processCellInput(Cell::CellController* cell_controller, UI::UIElement::ButtonType button_type)
+		{
+			board_controller->processCellInput(cell_controller, button_type);
+		}
+
+		void BoardService::flagAllMines() { board_controller->flagAllMines(); }
 	}
 }
